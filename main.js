@@ -1,5 +1,5 @@
 
-
+const socket = io('https://samwar11.herokuapp.com/');
 function openStream() {
     const config = { audio: false, video: true };
     return navigator.mediaDevices.getUserMedia(config);
