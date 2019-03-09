@@ -62,7 +62,7 @@ const peer = new Peer({
     key: 'peerjs', 
     host: 'samwar11.herokuapp.com', 
     secure: true, 
-    port: 443, 
+    port: 9000, 
     config: customConfig 
 });
 
