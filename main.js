@@ -1,6 +1,3 @@
-const socket = io('https://samwar11.herokuapp.com/');
-
-
 
 
 function openStream() {
