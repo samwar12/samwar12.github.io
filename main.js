@@ -1,4 +1,4 @@
-const socket = io('https://samwar11.herokuapp.com/');
+const socket = io('https://damp-sands-10482.herokuapp.com/');
 
 
 
@@ -19,7 +19,7 @@ function playStream(idVideoTag, stream) {
 
 const peer = new Peer({
     key: 'peerjs',
-    host: 'samwar11.herokuapp.com',
+    host: 'damp-sands-10482.herokuapp.com',
     secure: true,
     port: 443,
     config: customConfig
