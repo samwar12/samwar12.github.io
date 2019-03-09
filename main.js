@@ -1,47 +1,6 @@
 const socket = io('https://samwar11.herokuapp.com/');
 
-$('#div-chat').hide();
 
-let customConfig;
-
-$.ajax({
-  url: "https://global.xirsys.net/_turn/MyFirstApp/",
-  data: {
-    ident: "samwar12",
-    secret: "bec4837c-40a6-11e9-a62a-0242ac110003",
-    domain: "samwar12.github.io",
-    application: "default",
-    room: "default",
-    secure: 1
-  },
-  success: function (data, status) {
-    // data.d is where the iceServers object lives
-    customConfig = data.d;
-    console.log(customConfig);
-  },
-  async: false
-});
-
-socket.on('DANH_SACH_ONLINE', arrUserInfo => {
-    $('#div-chat').show();
-    $('#div-dang-ky').hide();
-
-    arrUserInfo.forEach(user => {
-        const { ten, peerId } = user;
-        $('#ulUser').append(`<li id="${peerId}">${ten}</li>`);
-    });
-
-    socket.on('CO_NGUOI_DUNG_MOI', user => {
-        const { ten, peerId } = user;
-        $('#ulUser').append(`<li id="${peerId}">${ten}</li>`);
-    });
-
-    socket.on('AI_DO_NGAT_KET_NOI', peerId => {
-        $(`#${peerId}`).remove();
-    });
-});
-
-socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
 
 
 function openStream() {
