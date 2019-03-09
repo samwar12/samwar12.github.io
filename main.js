@@ -1,3 +1,48 @@
+const socket = io('https://glacial-atoll-60287.herokuapp.com/');
+
+$('#div-chat').hide();
+
+let customConfig;
+
+$.ajax({
+  url: "https://service.xirsys.com/ice",
+  data: {
+    ident: "samwar12",
+    secret: "2b1c2dfe-4374-11e7-bd72-5a790223a9ce",
+    domain: "samwar12.github.io",
+    application: "default",
+    room: "default",
+    secure: 1
+  },
+  success: function (data, status) {
+    // data.d is where the iceServers object lives
+    customConfig = data.d;
+    console.log(customConfig);
+  },
+  async: false
+});
+
+socket.on('DANH_SACH_ONLINE', arrUserInfo => {
+    $('#div-chat').show();
+    $('#div-dang-ky').hide();
+
+    arrUserInfo.forEach(user => {
+        const { ten, peerId } = user;
+        $('#ulUser').append(`<li id="${peerId}">${ten}</li>`);
+    });
+
+    socket.on('CO_NGUOI_DUNG_MOI', user => {
+        const { ten, peerId } = user;
+        $('#ulUser').append(`<li id="${peerId}">${ten}</li>`);
+    });
+
+    socket.on('AI_DO_NGAT_KET_NOI', peerId => {
+        $(`#${peerId}`).remove();
+    });
+});
+
+socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
+
 
 function openStream() {
     const config = { audio: false, video: true };
@@ -13,7 +58,13 @@ function playStream(idVideoTag, stream) {
 // openStream()
 // .then(stream => playStream('localStream', stream));
 
-const peer = new Peer({key: 'lwjd5qra8257b9'});
+const peer = new Peer({ 
+    key: 'peerjs', 
+    host: 'glacial-atoll-60287.herokuapp.com', 
+    secure: true, 
+    port: 443, 
+    config: customConfig 
+});
 
 peer.on('open', id => {
     $('#my-peer').append(id);
