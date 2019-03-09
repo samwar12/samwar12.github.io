@@ -1,4 +1,4 @@
-const socket = io('https://damp-sands-10482.herokuapp.com/');
+const socket = io('https://samwar11.herokuapp.com/');
 
 
 
@@ -17,7 +17,14 @@ function playStream(idVideoTag, stream) {
 // openStream()
 // .then(stream => playStream('localStream', stream));
 
-const peer = new Peer({key: 'lwjd5qra8257b9'});
+const peer = new Peer({ 
+    key: 'peerjs', 
+    host: 'samwar11.herokuapp.com', 
+    secure: true, 
+    port: 9000, 
+    config: customConfig 
+});
+
 
 peer.on('open', id => {
     $('#my-peer').append(id);
