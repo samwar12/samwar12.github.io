@@ -1,4 +1,4 @@
-const socket = io('https://git.heroku.com/samwar11.git');
+const socket = io('https://samwar11.herokuapp.com/');
 
 
 
