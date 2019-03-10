@@ -1,5 +1,5 @@
 const socket = io('https://glacial-atoll-60287.herokuapp.com/');
-$('#div-chat').hide();
+
 
 $.ajax({
   url: "https://global.xirsys.net",
