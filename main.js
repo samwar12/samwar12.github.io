@@ -1,6 +1,11 @@
 const socket = io('https://glacial-atoll-60287.herokuapp.com/');
 
 
+
+$('#div-chat').hide();
+
+let customConfig;
+
 $.ajax({
   url: "https://global.xirsys.net",
   data: {
@@ -18,6 +23,27 @@ $.ajax({
   },
   async: false
 });
+
+socket.on('DANH_SACH_ONLINE', arrUserInfo => {
+    $('#div-chat').show();
+    $('#div-dang-ky').hide();
+
+    arrUserInfo.forEach(user => {
+        const { ten, peerId } = user;
+        $('#ulUser').append(`<li id="${peerId}">${ten}</li>`);
+    });
+
+    socket.on('CO_NGUOI_DUNG_MOI', user => {
+        const { ten, peerId } = user;
+        $('#ulUser').append(`<li id="${peerId}">${ten}</li>`);
+    });
+
+    socket.on('AI_DO_NGAT_KET_NOI', peerId => {
+        $(`#${peerId}`).remove();
+    });
+});
+
+socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
 
 
 function openStream() {
