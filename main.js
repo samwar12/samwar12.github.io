@@ -1,7 +1,23 @@
 const socket = io('https://glacial-atoll-60287.herokuapp.com/');
 $('#div-chat').hide();
 
-
+$.ajax({
+  url: "https://global.xirsys.net",
+  data: {
+    ident: "samwar11",
+    secret: "bec4837c-40a6-11e9-a62a-0242ac110003",
+    domain: "samwar12.github.io",
+    application: "default",
+    room: "default",
+    secure: 1
+  },
+  success: function (data, status) {
+    // data.d is where the iceServers object lives
+    customConfig = data.d;
+    console.log(customConfig);
+  },
+  async: false
+});
 
 
 function openStream() {
