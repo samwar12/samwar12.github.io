@@ -60,9 +60,9 @@ function playStream(idVideoTag, stream) {
 
 const peer = new Peer({ 
     key: 'peerjs', 
-    host: 'glacial-atoll-60287.herokuapp.com', 
+    host: 'intense-inlet-90456.herokuapp.com', 
     secure: true, 
-    port: 443, 
+    port: 9000, 
     config: customConfig 
 });
 
