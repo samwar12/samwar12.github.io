@@ -22,7 +22,7 @@ const peer = new Peer({
     key: 'peerjs', 
     host: 'intense-inlet-90456.herokuapp.com', 
     secure: true, 
-    port: 443,
+    port: 9000,
   config: customConfig 
 });
 
